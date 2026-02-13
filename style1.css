@@ -23,28 +23,39 @@ body {
 .night{
   position: fixed;
   inset: 0;
-  height: 100dvh;
-  width: 100%;
-
-  background:
-    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-    url("image.jpeg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  z-index: 0;
 }
 
-@media (max-width: 1320px){
-  .night{
+.night::before{
+  content:"";
+  position: absolute;
+  inset: 0;
+
+  background: url("image.jpeg") center / cover no-repeat;
+  transform: translateZ(0);          /* forces its own layer */
+  will-change: transform;
+}
+
+/* dark overlay (separate, more reliable) */
+.night::after{
+  content:"";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+}
+
+/* phone: show whole image */
+@media (max-width: 768px){
+  .night::before{
     background-size: contain;
-    background-color: #000;
+    background-color: #000;          /* letterbox area */
   }
 }
 
 .flowers {
   position: relative;
   transform: scale(0.9);
+  z-index: 1;
 }
 
 .flower {
