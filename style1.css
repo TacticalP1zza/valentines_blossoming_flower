@@ -35,7 +35,7 @@ body {
   background-repeat: no-repeat;
 }
 
-@media (max-width: 1208px){
+@media (max-width: 1320px){
   .night{
     background-size: contain;
     background-color: #000;
